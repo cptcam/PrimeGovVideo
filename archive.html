@@ -1,0 +1,65 @@
+<DOCTYPE! html>
+<html>
+<head>
+	<title>Cameron's Google Projects Test Site</title>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="style.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<!-- Toggles -->
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<button type="button" id="monarch-devices-btn" class="navbar-toggle navbar-btn collapsed" data-toggle="collapse" data-target="#monarch-device-collapse">
+							<img id="monarch-logo" src="img/monarch-inset.png" />
+						</button>
+						<a class="navbar-brand" href="#"><img id="logo" src="img/LogoTransparent.png"/></a>
+					</div>
+					<div class="collapse navbar-collapse" id="monarch-device-collapse">
+						<ul class="nav navbar-nav">
+							<li><button type="button" class="plus" data-toggle="modal" data-target=""></button></li>
+						</ul>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="#">Live Video<span class="sr-only">(current)</span></a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Video Archive<span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li>
+										<a href="#">
+											<h2>City Council Meeting</h2><p>March 26,2015</p>
+											<img class="archive-menu-thumbnail" src="img/youtube-slate.jpg" />
+										</a>
+									</li>
+									<li>
+										<a href="#" aria-label="More Videos">
+											<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+</body>
+</html>

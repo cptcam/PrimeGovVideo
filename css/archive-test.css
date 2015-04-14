@@ -1,0 +1,23 @@
+.archived-video-scroll{
+	width: auto;
+	height: auto;
+	max-height: 355px;
+	overflow-x: hidden;
+}
+
+/* Mimic Bootstrap DropDown Menu
+   ------Anchor Styles----------*/
+.archived-video-scroll>li>a{
+	display: block;
+	padding: 3px 20px;
+	clear: both;
+	font-weight: 400;
+	line-height: 1.42857143;
+	color: #333;
+	white-space: nowrap;
+}
+
+#archived-videos-page-view{
+	padding: 0;
+	margin: 0;
+}

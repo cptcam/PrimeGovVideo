@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PrimeStream - Live Streaming For Your Local Government | Prime Government Solutions</title>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="style.css"/>
+	<link rel="stylesheet" href="menu-test.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+</head>
+<body>
+	<!-- Top Navbar -->
+	<nav id="top-nav" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<!-- Toggles -->
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#archived-videos-dropdown">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class="navbar-left">
+					<a id="main-logo" class="navbar-brand" href="#"><img id="logo" src="img/LogoTransparent.png"/></a>
+					<button type="button" id="monarch-devices-btn" class="navbar-btn">
+						<img id="monarch-logo" src="img/monarch-inset.png" />
+					</button>
+					<button type="button" id="settings-btn" class="navbar-btn">
+						<img id="settings" src="img/settings-gear.png" />
+					</button>
+				</div>
+			</div>
+			<!-- Monarch Toggle Menu -->
+			<div id="monarch-device-collapse">
+				<ul id="monarch-device-nav" class="nav navbar-nav">
+					<li>
+						<div id="editMonarchRow">
+							<div>
+								<button type="button" id="monarch-device" data-toggle="modal" data-target="#editMonarchModal">
+									<img class="monarch-device-img" src="img/matrox-monarch-hd.jpg"/>
+								</button>
+							</div>
+							<!-- Edit Monarch Modal -->
+							<div id ="editMonarchModal" class="modal fade">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title">Edit Monarch HD</h4>
+										</div>
+										<form id="editMonarchForm" class="form-horizontal">
+											<div class="modal-body">
+												<div class="form-group">
+													<label for="inputMonarchIPEdit" class="control-label col-xs-4">Monarch IP:</label>
+													<div class="col-xs-8">
+														<input type="text" class="form-control" id="inputMonarchIPEdit" name="ip_address" placeholder="Monarch HD IP Address" value="10.1.10.22" readonly/>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="inputMonarchPasswordEdit" class="control-label col-xs-4">Password:</label>
+													<div class="col-xs-8">
+														<input type="password" class="form-control" id="inputMonarchPasswordEdit" name="password" placeholder="Password" value="admin" readonly/>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												<button type="submit" class="btn btn-primary">Save changes</button>
+											</div>
+										</form>
+									</div><!-- /.modal-content -->
+								</div><!-- /.modal-dialog -->
+							</div><!-- /.modal -->
+						</div>
+					</li>	
+					<li>
+						<div id="addMonarchRow">
+							<button type="button" class="plus col col-xs-12" data-toggle="modal" data-target="#addMonarchModal"></button>
+							<!-- Add Monarch Modal -->
+							<div id ="addMonarchModal" class="modal fade">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title">Add Monarch HD</h4>
+										</div>
+										<form id="addMonarchForm" class="form-horizontal">
+											<div id="waitingForMonarch">
+												<img src="img/ajax-loader.gif" alt="arrows demonstrating page loading"/>
+												<p id="waitingMonarchMsg">Checking for valid Monarch Device...</p>
+											</div>
+											<div id="addMonarchFormModalBody" class="modal-body">
+												<div class="form-group">
+													<label for="inputMonarchIP" class="control-label col-xs-4">Monarch IP:</label>
+													<div class="col-xs-8">
+														<input type="text" class="form-control" id="inputMonarchIP" name="ip_address" placeholder="Monarch HD IP Address"/>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="inputMonarchPassword" class="control-label col-xs-4">Password:</label>
+													<div class="col-xs-8">
+														<input type="password" class="form-control" id="inputMonarchPassword" name="password" placeholder="Password"/>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button id="addMonarchFormCloseBtn" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												<button id="addMonarchFormSubmitBtn" type="submit" class="btn btn-primary">Save changes</button>
+											</div>
+										</form>
+									</div><!-- /.modal-content -->
+								</div><!-- /.modal-dialog -->
+							</div><!-- /.modal -->
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- Google+ Sign-in and Settings Toggle Menu -->
+			<div id="settings-collapse">
+				<ul class="nav navbar-nav">
+					<li>
+						<div id="loginRow" class="row">
+							<span id="signinButton1" class="col col-xs-12">
+							  <span
+								class="g-signin"
+								data-callback="handleAuthResult"
+								data-clientid="462388181157-eq6ac5p3bkvoapo3c5aghnkfk52jcdcl.apps.googleusercontent.com"
+								data-cookiepolicy="single_host_origin"
+								data-scope="https://www.googleapis.com/auth/youtube">
+							  </span>
+							</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- Archived Videos Dropdown -->
+			<div class="collapse navbar-collapse" id="archived-videos-dropdown">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a id="live-video-link" role="button">Live Video<span class="sr-only">(current)</span></a></li>
+					<li class="dropdown">
+						<a id="archive-video-link" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Video Archive<span class="caret"></span></a>
+						<ul id="archived-videos-list" class="dropdown-menu scrollable-menu" role="menu">
+							<li>
+								<span id="signinButton2" class="col col-xs-12">
+								  <span
+									class="g-signin"
+									data-callback="handleAuthResult"
+									data-clientid="462388181157-eq6ac5p3bkvoapo3c5aghnkfk52jcdcl.apps.googleusercontent.com"
+									data-cookiepolicy="single_host_origin"
+									data-scope="https://www.googleapis.com/auth/youtube">
+								  </span>
+								</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid">
+		<!-- Add Live Video Form -->
+		<div id="waitingRow" class="row">
+			<div id="waitingForServer" class="col col-xs-12">
+				<p id="waitingMessage">Add Valid Monarch Device</p>
+			</div>
+		</div>
+		<div id="yt-form" class="col-xs-12">
+			<form id="stream-form" class="form-horizontal">
+				<div class="form-group">
+					<label for="inputVideoName" class="control-label col-xs-4">Video Name:</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputVideoName" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputStreamStartDatetime" class="control-label col-xs-4">Start Time:</label>
+					<div class="col-xs-8">
+						<input type="datetime-local" class="form-control" id="inputStreamStartDatetime" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputStreamEndDatetime" class="control-label col-xs-4">End Time:</label>
+					<div class="col-xs-8">
+						<input type="datetime-local" class="form-control" id="inputStreamEndDatetime" disabled>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- Watch Live Video -->
+		<div id="streamingPanel" class="col-xs-12">
+			<div class="row panel">
+				<div class="panel-body">
+					<div class="panel col-xs-12 col-sm-6">
+						<div class="panel-heading">
+							<h3>Preview Stream</h3>
+						</div>
+						<div id="preview-frame" class="panel-body">
+							<img class="col-xs-12" src="img/youtube-slate.jpg"/>
+						</div>
+					</div>
+					<div class="panel col-xs-12 col-sm-6">
+						<div class="panel-heading">
+							<h3>Live Stream</h3>
+						</div>
+						<div id="public-frame" class="panel-body">
+							<img class="col-xs-12" src="img/youtube-slate.jpg"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Watch Archived Videos -->
+		<div id="archivedVideoPanel" class="col-xs-12">
+			<div class="row panel">
+				<div class="panel-body">
+					<div class="panel">
+						<div class="panel-heading">
+							<h3>Select A Video</h3>
+						</div>
+						<div class="panel-body">
+							<!--<img id="archived-video-placeholder" class="col-xs-12 col-lg-6" src="img/youtube-slate.jpg"/>-->
+							<ul id="archived-videos-page-view" class="archived-video-scroll">
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Archived YouTube Video Modal -->
+		<div id ="archivedYouTubeVideoModal" class="modal fade col-xs-12">
+			<div class="modal-dialog">
+				<img id="archived-video-placeholder" class="col-xs-12" src="img/youtube-slate.jpg"/>
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</div>
+	<!-- Start and Stop Stream Functionality -->
+	<nav id="bottom-nav" class="navbar navbar-default navbar-fixed-bottom">
+		<div class="stream-nav">
+			<button type="button" id="startStream" class="btn btn-success" disabled>Start Streaming</button>
+		</div>
+		<div class="stream-nav">
+			<button type="button" id="stopStream" class="btn btn-danger" disabled>Stop Streaming</button>
+		</div>
+	</nav>
+	<script src="js/my-script.js"></script>
+	<script src="https://apis.google.com/js/client.js?onload=initializeApp"></script>
+</body>
+</html>

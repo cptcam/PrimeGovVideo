@@ -930,7 +930,7 @@ function DOMCommunicator(){
 
 // 5. EXTENSION COMMUNICATOR
 function monarchExtensionMessenger(){
-	this.extensionId = "jpfdiljpmcaodjjmacglfoighpgnmcoi";
+	this.extensionId = "adpiackmfegmpblfljmjbfahoglbeomh";
 	
 	this.extensionMessageResponse = function(response){
 		if(!response.success){

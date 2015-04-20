@@ -1,0 +1,32 @@
+{
+	"manifest_version": 2,
+	"name" : "Monarch Whisperer",
+	"version": "1.0",
+	
+	"description" : "This extension allows you to use JavaScript and HTTP to
+	communicate with your Matrox Monarch HD",
+	
+	"author":"Cameron Lambert",
+	"content_scripts":[
+		{
+			"matches":["*://localhost/PrimeGovVideo/*"],
+			"js":["contentscript.js"]
+		}
+	],
+	"background":{
+		"scripts":["monarch-whisper.js"],
+		"persistent":false
+	},
+	"externally_connectable":{
+		"ids":["*"],
+		"matches":[
+			"*://localhost/PrimeGovVideo/*"
+		]
+	},
+	"permissions": [
+		"tabs",
+		"http://localhost/PrimeGovVideo/*",
+		"http://10.1.10.22/*",
+		"https://ajax.googleapis.com/"
+	]
+}

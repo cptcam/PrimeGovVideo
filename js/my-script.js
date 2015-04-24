@@ -102,18 +102,21 @@ function liveBroadcastRequestBody(snippet,status,contentDetails){
 }
 
 // 2. INITIALIZATION FUNCTIONS
-document.body.onload = function initialize(){
+// document.body.onload = 
+function initialize(){
 	domComm = new DOMCommunicator();
 	matroxComm = new monarchExtensionMessenger();
 	topNavigation = new TopNav();
 	streamingPanel = new StreamPanel();
 	archivePanel = new ArchivedVideoPanel();
 	bottomNavigation = new BottomNav();
-	backwardsCompatibleAddEventListener(window,'message','message',domComm.handleMonarchMsg,false);
+	CrossriderAPI.bindExtensionEvent(document.body,'receiveMonarchMsg', domComm.handleMonarchMsg);
+	//backwardsCompatibleAddEventListener(window,'message','message',domComm.handleMonarchMsg,false);
 	if(document.cookie){
 		domComm.initializePage(document.cookie);
 	}
-};
+}
+backwardsCompatibleAddEventListener(document,'DOMContentLoaded','onload',initialize,false);
 
 function initializeApp(){
 	youtubeApp = new youtubeApplication();
@@ -620,16 +623,19 @@ function DOMCommunicator(){
 	}
 	
 	this.handleAddMonarchFormSubmission = function(ev){
-		if(ev.preventDefault){ev.preventDefault();}
+		console.log("Monarch form submission event: ", ev);
+		if(ev.preventDefault){ev.preventDefault();}else{ev.defaultPrevented = true;}
 		
 		// Disable submit and close button
 		topNavigation.monarchToggle.monarchToggleMenu.addMonarchForm.disableButtons();
 		
 		// Send message to extension
-		var initialCommand = new getStatusCommand(ev.srcElement.id);
+		// ev.srcElement.id
+		var monarchFormId = topNavigation.monarchToggle.monarchToggleMenu.addMonarchForm.html.id;
+		//var initialCommand = new getStatusCommand(monarchFormId);
 		user = new monarchUser(topNavigation.monarchToggle.monarchToggleMenu.addMonarchForm.inputs[1].html.value);
 		monarchDevices[monarchDevices.length] = new monarch(topNavigation.monarchToggle.monarchToggleMenu.addMonarchForm.inputs[0].html.value);
-		var extensionMsg = new monarchInstruction(monarchDevices[monarchDevices.length - 1],user,new getStatusCommand(ev.srcElement.id));
+		var extensionMsg = new monarchInstruction(monarchDevices[monarchDevices.length - 1],user,new getStatusCommand(monarchFormId));
 		matroxComm.sendMessage(extensionMsg);
 		
 		// Display waiting message
@@ -870,22 +876,22 @@ function DOMCommunicator(){
 		},1000);
 	}
 	
-	this.handleMonarchMsg = function(ev){
-		if(ev.source != window) return;
+	this.handleMonarchMsg = function(ev,data){
 		console.log("Receiving message from monarch: ", ev);
-		if(ev.data.type && ev.data.type == "FROM_PAGE"){
-			if(ev.data.text == "Success"){
-				if(ev.data.command == "SetRTMP"){
+		console.log("Data from monarch: ", data);
+		if(data.type && data.type == "FROM_PAGE"){
+			if(data.text == "Success"){
+				if(data.command == "SetRTMP"){
 					domComm.startVideoStream();
-				}else if(ev.data.command == "StartStreaming"){
+				}else if(data.command == "StartStreaming"){
 					domComm.embedPreviewStream();
-				}else if(ev.data.command == "GetStatus"){
-					domComm.validMonarchLoaded(ev.data.commandSrc);
-				}else if(ev.data.command == "StopStreaming"){
+				}else if(data.command == "GetStatus"){
+					domComm.validMonarchLoaded(data.commandSrc);
+				}else if(data.command == "StopStreaming"){
 					domComm.restoreToDefault();
 				}
 			}else{
-				var src = ev.data.commandSrc;
+				var src = data.commandSrc;
 				if(src != 'addMonarchForm'){
 					domComm.handleStreamError(src,"Monarch command " + ev.data.command + " failed.");
 				}else{
@@ -930,18 +936,26 @@ function DOMCommunicator(){
 
 // 5. EXTENSION COMMUNICATOR
 function monarchExtensionMessenger(){
-	this.extensionId = "adpiackmfegmpblfljmjbfahoglbeomh";
+	this.extensionId = "74416";
+	//"adpiackmfegmpblfljmjbfahoglbeomh";
 	
-	this.extensionMessageResponse = function(response){
+	this.extensionMessageResponse = function(ev,response){
 		if(!response.success){
 			domComm.handleMessageResponseToExtension(response.commandSrc);
 		}	
 	}
+	CrossriderAPI.bindExtensionEvent(document.body,'messageReceived',this.extensionMessageResponse);
 	
 	this.sendMessage = function(monarchInstructionObj){
 		console.log("Message being sent to Extension: ", monarchInstructionObj);
-		chrome.runtime.sendMessage(this.extensionId,monarchInstructionObj
-			,this.extensionMessageResponse);
+		CrossriderAPI.isAppInstalled(this.extensionId, function(isInstalled){
+			if(isInstalled){
+				// Send message to extension
+				CrossriderAPI.fireExtensionEvent(document.body,'messageMonarch',monarchInstructionObj);
+			}
+		});
+			/*chrome.runtime.sendMessage(this.extensionId,monarchInstructionObj
+			,this.extensionMessageResponse);*/
 	}
 }
 
@@ -969,8 +983,8 @@ function monarchInstruction(monarchObj,monarchUserObj,commandObj){
 }
 
 function monarchCommandURL(username,password,ipAddress,command){
-	this.url = "http://" + username + ":" + password + "@" +
-		ipAddress + "/Monarch/syncconnect/sdk.aspx?command=" +
+	this.url = "http://" + username + ":" + encodeURIComponent(password) + "@" +
+		encodeURIComponent(ipAddress) + "/Monarch/syncconnect/sdk.aspx?command=" +
 		command;
 	this.toString = function(){
 		return this.url;

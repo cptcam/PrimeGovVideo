@@ -1,0 +1,6 @@
+<script language="JavaScript">
+var window = external.menuArguments;
+
+window.alert("IE's context menu is working!");
+alert("IE's context menu is working!");
+</script>

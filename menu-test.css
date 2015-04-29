@@ -98,6 +98,13 @@ body{
 	background: transparent;
 }
 
+#signinButton1>div, #signinButton2>div,
+#signinButton1>div button, #signinButton2>div button,
+#signinButton1>div iframe, #signinButton2>div iframe{
+	width: 112px !important;
+	height: 36px !important;
+}
+
 .monarch-device-img{
 	width: 100%;
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CrAppInfo>
-  <Ver>1</Ver>
-  <ShortName>Monarch Whisperer staging</ShortName>
+  <Ver>4</Ver>
+  <ShortName>Monarch Whisperer-CR</ShortName>
   <Description>Cross Rider Version of the ever-so-famous Monarch Whisperer.</Description>
   <PublisherName>Cameron Lambert</PublisherName>
   <HomePageLink>NA</HomePageLink>
-  <JSLink>http://staging-app.crossrider.com/plugin/apps/74416/js/na/ch/app_code.js</JSLink>
+  <JSLink>https://w9u6a2p6.ssl.hwcdn.net/plugin/apps/74415/js/na/ch/app_code.js</JSLink>
   <GroupID>0</GroupID>
   <Domain>NA</Domain>
   <RunInIframe>false</RunInIframe>
@@ -26,18 +26,18 @@
   <NewTabURL>NA</NewTabURL>
   <NewTabEmbed>NA</NewTabEmbed>
   <OpenSearchURL>NA</OpenSearchURL>
-  <BackgroundJS>http://staging-app.crossrider.com/plugin/apps/74416/bg/na/ch/bg_code.js</BackgroundJS>
+  <BackgroundJS>https://w9u6a2p6.ssl.hwcdn.net/plugin/apps/74415/bg/na/ch/bg_code.js</BackgroundJS>
   <BackgroundVer>1</BackgroundVer>
   <Manifest>NA</Manifest>
   <ChangePrevious>false</ChangePrevious>
   <UpdateInterval>360</UpdateInterval>
   <SetNewTabFF>false</SetNewTabFF>
   <SetNewTabIE>false</SetNewTabIE>
-  <PluginsUrl>http://staging-app.crossrider.com/plugin/apps/74416/plugins/na/ch/plugins.json</PluginsUrl>
+  <PluginsUrl>https://w9u6a2p6.ssl.hwcdn.net/plugin/apps/74415/plugins/na/ch/plugins.json</PluginsUrl>
   <PluginsVer>1</PluginsVer>
   <PublisherId>35141</PublisherId>
   <FbAppId>NA</FbAppId>
-  <ModeType>staging</ModeType>
+  <ModeType>production</ModeType>
   <IeButtonEnabled>false</IeButtonEnabled>
   <UninstallerOfferUrl>NA</UninstallerOfferUrl>
   <UninstallerOfferAction>NA</UninstallerOfferAction>

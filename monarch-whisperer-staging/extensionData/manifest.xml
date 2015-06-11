@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CrAppInfo>
+  <Ver>1</Ver>
+  <ShortName>Monarch Whisperer staging</ShortName>
+  <Description>Cross Rider Version of the ever-so-famous Monarch Whisperer.</Description>
+  <PublisherName>Cameron Lambert</PublisherName>
+  <HomePageLink>NA</HomePageLink>
+  <JSLink>http://staging-app.crossrider.com/plugin/apps/74416/js/na/ch/app_code.js</JSLink>
+  <GroupID>0</GroupID>
+  <Domain>NA</Domain>
+  <RunInIframe>false</RunInIframe>
+  <ThanksURL>NA</ThanksURL>
+  <EmailSignature>NA</EmailSignature>
+  <SettingsURL>NA</SettingsURL>
+  <CertifiedInstall>NA</CertifiedInstall>
+  <ExposeSites>NA</ExposeSites>
+  <RemoteFBApiURL>NA</RemoteFBApiURL>
+  <DisableIE>true</DisableIE>
+  <DisableFF>true</DisableFF>
+  <EnableSearchIE>false</EnableSearchIE>
+  <EnableSearchFF>false</EnableSearchFF>
+  <AddressbarIE>NA</AddressbarIE>
+  <AddressbarFF>NA</AddressbarFF>
+  <AddressbarFFEnhanced>NA</AddressbarFFEnhanced>
+  <AddressbarCR>NA</AddressbarCR>
+  <NewTabURL>NA</NewTabURL>
+  <NewTabEmbed>NA</NewTabEmbed>
+  <OpenSearchURL>NA</OpenSearchURL>
+  <BackgroundJS>http://staging-app.crossrider.com/plugin/apps/74416/bg/na/ch/bg_code.js</BackgroundJS>
+  <BackgroundVer>1</BackgroundVer>
+  <Manifest>NA</Manifest>
+  <ChangePrevious>false</ChangePrevious>
+  <UpdateInterval>360</UpdateInterval>
+  <SetNewTabFF>false</SetNewTabFF>
+  <SetNewTabIE>false</SetNewTabIE>
+  <PluginsUrl>http://staging-app.crossrider.com/plugin/apps/74416/plugins/na/ch/plugins.json</PluginsUrl>
+  <PluginsVer>1</PluginsVer>
+  <PublisherId>35141</PublisherId>
+  <FbAppId>NA</FbAppId>
+  <ModeType>staging</ModeType>
+  <IeButtonEnabled>false</IeButtonEnabled>
+  <UninstallerOfferUrl>NA</UninstallerOfferUrl>
+  <UninstallerOfferAction>NA</UninstallerOfferAction>
+</CrAppInfo>

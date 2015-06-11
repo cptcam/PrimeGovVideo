@@ -893,6 +893,7 @@ function DOMCommunicator(){
 			}else{
 				var src = data.commandSrc;
 				if(src != 'addMonarchForm'){
+					console.log(ev);
 					domComm.handleStreamError(src,"Monarch command " + ev.data.command + " failed.");
 				}else{
 					domComm.handleMessageResponseToExtension(src); 
